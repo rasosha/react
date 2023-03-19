@@ -77,6 +77,7 @@ svg:hover {
   flex-wrap: wrap;
   height: 100%;
   max-width: 1200px;
+  padding-top: 5px;
 }
 
 .card {
@@ -149,11 +150,13 @@ svg:hover {
 }
 
 .searchbar-div {
+  z-index: 5;
   height: 100px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 0 5px 5px #efefef;
 }
 
 .searchbar-input, .searchbar-btn, .card {
