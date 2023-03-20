@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class SearchBar extends Component<{}, { inputText: string }> {
+class SearchBar extends Component<unknown, { inputText: string }> {
   constructor(props: { inputText: string }) {
     super(props);
     this.state = { inputText: '' };
