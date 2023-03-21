@@ -6,29 +6,39 @@ class Card extends Component<ICard> {
     super(props);
   }
   render() {
+    const {
+      id,
+      image,
+      name,
+      species,
+      status,
+      gender,
+      origin: { name: originName },
+    } = this.props;
+
     return (
       <>
-        <div className="card" data-testid={`card${this.props.id}`}>
+        <div className="card" data-testid={`card${id}`}>
           <div className="card-char">
-            <div className="char-img" style={{ backgroundImage: `url(${this.props.image})` }}></div>
-            <p className="char-name">{this.props.name}</p>
+            <div className="char-img" style={{ backgroundImage: `url(${image})` }}></div>
+            <p className="char-name">{name}</p>
           </div>
           <ul className="char-info">
             <li className="info-label">
               species:
-              <span className="info-text">{this.props.species}</span>
+              <span className="info-text">{species}</span>
             </li>
             <li className="info-label">
               status:
-              <span className="info-text">{this.props.status}</span>
+              <span className="info-text">{status}</span>
             </li>
             <li className="info-label">
               gender:
-              <span className="info-text">{this.props.gender}</span>
+              <span className="info-text">{gender}</span>
             </li>
             <li className="info-label">
               origin:
-              <span className="info-text">{this.props.origin.name}</span>
+              <span className="info-text">{originName}</span>
             </li>
           </ul>
         </div>

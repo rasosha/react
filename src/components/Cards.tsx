@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import Card from './Card';
-import { ICard } from '../types/types';
+import { ICard, ICards } from '../types/types';
 
-// const randomNumbers = new Array(20).fill(1).map(() => Math.floor(Math.random() * 825));
-const randomNumbers = new Array(20).fill(0).map((val, i) => i + 1);
-const url = `https://rickandmortyapi.com/api/character/${randomNumbers}`;
-const cardsArr: [] = await fetch(url)
-  .then((res) => res.json())
-  .then((res) => res);
+class Cards extends Component<never, ICards> {
+  constructor(props: never) {
+    super(props);
+    this.state = {
+      cards: [],
+      page: 1,
+      api: `https://rickandmortyapi.com/api/character/?page=`,
+    };
+  }
 
-class Cards extends Component {
+  componentDidMount() {
+    fetch(this.state.api + this.state.page)
+      .then((res) => res.json())
+      .then((data) => {
+        this.setState({
+          cards: data.results,
+        });
+      });
+  }
+
   render() {
     return (
       <div className="cards">
-        {cardsArr
-          .sort((a: ICard, b: ICard) => a.id - b.id)
-          .map((item: ICard) => (
-            <Card key={item.id} {...item} />
-          ))}
+        {this.state.cards.map((item: ICard) => (
+          <Card key={item.id} {...item} />
+        ))}
       </div>
     );
   }
