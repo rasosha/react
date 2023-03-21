@@ -5,6 +5,7 @@ import IndexPage from './pages/IndexPage';
 import ErrorPage from './pages/ErrorPage';
 import AboutPage from './pages/AboutPage';
 import PageStructure from './components/Page';
+import FormPage from './pages/FormPage';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route path="/" element={<PageStructure />}>
               <Route index element={<IndexPage />} />
               <Route path="about" element={<AboutPage />} />
+              <Route path="form" element={<FormPage />} />
               <Route path="*" element={<ErrorPage />} />
             </Route>
           </Routes>

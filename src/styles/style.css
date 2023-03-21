@@ -10,7 +10,9 @@
   grid-template-rows: 50px calc(100vh - 100px) 50px;
 }
 
-.header, .footer, .main {
+.header,
+.footer,
+.main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,7 +32,8 @@
   margin: 10px;
 }
 
-.header, .footer {
+.header,
+.footer {
   z-index: 10;
   box-shadow: 0 0 10px black;
 }
@@ -52,7 +55,6 @@
   border-radius: 5px;
   box-shadow: 0 0 1px 1px #ffffff80;
 }
-
 
 svg:hover {
   transform: scale(105%);
@@ -96,7 +98,8 @@ svg:hover {
   cursor: pointer;
 }
 
-.card:hover .char-img, .card:hover .char-name{
+.card:hover .char-img,
+.card:hover .char-name {
   transform: scale(105%);
   transition: all 0.5s ease;
   object-fit: contain;
@@ -112,7 +115,6 @@ svg:hover {
   align-items: end;
   justify-content: center;
   transition: all 0.5s ease;
-
 }
 
 .char-name {
@@ -138,9 +140,9 @@ svg:hover {
   text-overflow: ellipsis;
 }
 
-.info-label{
+.info-label {
   list-style-type: circle;
-  list-style-position:outside;
+  list-style-position: outside;
   font-style: italic;
   margin: 5px 5px 5px 25px;
 }
@@ -159,7 +161,9 @@ svg:hover {
   box-shadow: 0 0 5px 5px #efefef;
 }
 
-.searchbar-input, .searchbar-btn, .card {
+.searchbar-input,
+.searchbar-btn,
+.card {
   box-shadow: 0 5px 5px #cfdbdb;
 }
 .searchbar-input {
@@ -175,9 +179,7 @@ svg:hover {
   font-size: 25px;
   padding: 0 100px 0 20px;
 }
-.searchbar-input:focus .searchbar-btnb {
-  border: 2px solid red;
-}
+
 .searchbar-btn {
   height: 50px;
   width: 50px;
@@ -193,4 +195,28 @@ svg:hover {
 .searchbar-btn:hover {
   cursor: pointer;
   background-color: rgb(201, 201, 201);
+}
+
+main > ::-webkit-scrollbar {
+  width: 20px;
+  height: 50%;
+}
+
+::-webkit-scrollbar-button {
+  background-color: transparent;
+}
+
+main > ::-webkit-scrollbar-track {
+  background: #e6e0ce;
+  border-radius: 50px;
+}
+
+main > ::-webkit-scrollbar-thumb {
+  background-color: #cfdbdb;
+  border-radius: 50px;
+  border: 3px solid #cfdbdb;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

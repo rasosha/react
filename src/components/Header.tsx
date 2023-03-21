@@ -11,7 +11,16 @@ class Header extends Component<{}, { currPage: string }> {
 
   getCurrPage() {
     const path = window.location.pathname.slice(1);
-    return path === '' ? 'Main Page' : path === 'about' ? 'About Page' : '404 Page';
+    switch (path) {
+      case '':
+        return 'Main Page';
+      case 'about':
+        return 'About Page';
+      case 'form':
+        return 'Form Page';
+      default:
+        return '404 Page';
+    }
   }
 
   updatePagePath() {
@@ -27,6 +36,9 @@ class Header extends Component<{}, { currPage: string }> {
           </NavLink>
           <NavLink to="/about" className="link" onClick={this.updatePagePath}>
             About Us
+          </NavLink>
+          <NavLink to="/form" className="link" onClick={this.updatePagePath}>
+            Form
           </NavLink>
         </div>
         <div className="link">this is {this.getCurrPage()}</div>
