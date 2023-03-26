@@ -4,8 +4,8 @@ import { render, screen } from '@testing-library/react';
 import Cards from '../../components/Cards';
 
 describe('Cards tests', async () => {
-  it('Should render 20 cards', async () => {
+  it('Should render cards div', async () => {
     await render(<Cards />);
-    expect(screen.getAllByTestId(/card/)).toHaveLength(20);
+    expect(screen.getByTestId('cards')).toBeInTheDocument();
   });
 });

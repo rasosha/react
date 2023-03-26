@@ -7,14 +7,26 @@ class Card extends Component<ICard> {
   }
   render() {
     const {
-      id,
-      image,
-      name,
-      species,
-      status,
-      gender,
-      origin: { name: originName },
+      id = '',
+      image = '',
+      name = '',
+      species = '',
+      status = '',
+      gender = '',
+      created = '',
     } = this.props;
+    const createdDate = {
+      day:
+        new Date(created).getDate() < 10
+          ? '0' + new Date(created).getDate()
+          : new Date(created).getDate(),
+      month:
+        new Date(created).getMonth() + 1 < 10
+          ? '0' + (+new Date(created).getMonth() + 1)
+          : +new Date(created).getMonth() + 1,
+      year: new Date(created).getFullYear(),
+    };
+    const date = `${createdDate.year}/${createdDate.month}/${createdDate.day}`;
 
     return (
       <>
@@ -37,8 +49,8 @@ class Card extends Component<ICard> {
               <span className="info-text">{gender}</span>
             </li>
             <li className="info-label">
-              origin:
-              <span className="info-text">{originName}</span>
+              created:
+              <span className="info-text">{date}</span>
             </li>
           </ul>
         </div>

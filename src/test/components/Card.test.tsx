@@ -12,6 +12,11 @@ const testCardProps = {
   image: 'testimage',
   origin: {
     name: 'testoriginname',
+    url: 'testoriginurl',
+  },
+  location: {
+    name: undefined,
+    url: undefined,
   },
 };
 
