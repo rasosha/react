@@ -85,7 +85,7 @@ export class FormPage extends React.Component<object, FormProps> {
 
   render(): React.ReactNode {
     return (
-      <main className="mainForm">
+      <main className="mainForm" data-testid="FormPage">
         <form
           className={'form'}
           onSubmit={this.handleSubmit}
