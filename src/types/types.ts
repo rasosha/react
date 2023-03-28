@@ -9,20 +9,18 @@ export interface ICard {
   created?: string;
 }
 
-export interface IProps {}
-export interface IState {}
-
 export interface FormProps {
   showErrors: boolean;
   modal: boolean;
-  isValid: {
-    isNameValid: boolean;
-    isSpeciesValid: boolean;
-    isGenderValid: boolean;
-    isStatusValid: boolean;
-    isDateValid: boolean;
-    isFileValid: boolean;
-    isChecked: boolean;
-  };
   cards: ICard[];
+}
+
+export interface inputProps {
+  showErrors: boolean;
+}
+
+export interface inputState {
+  isValid?: boolean;
+  input?: string | undefined;
+  checked?: boolean;
 }

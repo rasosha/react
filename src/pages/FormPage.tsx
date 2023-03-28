@@ -1,17 +1,23 @@
 import React from 'react';
 import { FormProps } from '../types/types';
 import Cards from '../components/Cards';
+import NameInput from '../components/Form/NameInput';
+import SpeciesInput from '../components/Form/SpeciesInput';
+import GenderInput from '../components/Form/GenderInput';
+import StatusInput from '../components/Form/StatusInput';
+import DateInput from '../components/Form/DateInput';
+import Checkbox from '../components/Form/Checkbox';
+import FileInput from '../components/Form/FileInput';
 
 export class FormPage extends React.Component<object, FormProps> {
   formInput = React.createRef<HTMLFormElement>();
-  nameInput = React.createRef<HTMLInputElement>();
-  fileInput = React.createRef<HTMLInputElement>();
-  speciesInput = React.createRef<HTMLInputElement>();
-  genderInputMale = React.createRef<HTMLInputElement>();
-  genderInputFemale = React.createRef<HTMLInputElement>();
-  dateInput = React.createRef<HTMLInputElement>();
-  checkboxInput = React.createRef<HTMLInputElement>();
-  statusInput = React.createRef<HTMLSelectElement>();
+  fileRef = React.createRef<FileInput>();
+  speciesRef = React.createRef<SpeciesInput>();
+  genderRef = React.createRef<GenderInput>();
+  dateRef = React.createRef<DateInput>();
+  checkboxRef = React.createRef<Checkbox>();
+  statusRef = React.createRef<StatusInput>();
+  nameRef = React.createRef<NameInput>();
 
   constructor(props: object) {
     super(props);
@@ -19,118 +25,57 @@ export class FormPage extends React.Component<object, FormProps> {
       cards: [],
       modal: false,
       showErrors: false,
-      isValid: {
-        isNameValid: false,
-        isSpeciesValid: false,
-        isGenderValid: false,
-        isStatusValid: false,
-        isDateValid: false,
-        isFileValid: false,
-        isChecked: false,
-      },
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReset = this.handleReset.bind(this);
   }
 
-  isNameValid() {
-    return this.nameInput.current ? /^(\b[A-Z]\w*\s*)+$/.test(this.nameInput.current.value) : false;
-  }
-  isSpeciesValid() {
-    if (this.speciesInput.current) {
-      const str = this.speciesInput.current?.value.toLowerCase();
-      return str === 'human' || str === 'animal' || str === 'unknown';
-    } else return false;
-  }
-  isGenderValid() {
-    return (
-      this.genderInputMale.current?.checked || this.genderInputFemale.current?.checked || false
-    );
-  }
-  isStatusValid() {
-    const statusInput = this.statusInput.current?.value;
-    return this.statusInput.current
-      ? statusInput === 'alive' || statusInput === 'dead' || statusInput === 'unknown'
-      : false;
-  }
-  isDateValid() {
-    const today = new Date(Date.now());
-    const input = this.dateInput.current?.value.toString();
-    if (input) {
-      return (
-        `${today.getFullYear()}-${
-          today.getMonth() < 10 ? '0' + (today.getMonth() + 1) : today.getMonth() + 1
-        }-${today.getDate() < 10 ? '0' + today.getDate() : today.getDate()}` >= input
-      );
-    } else return false;
-  }
-  isFileValid() {
-    return this.fileInput.current ? this.fileInput.current.value.endsWith('.jpg') : false;
-  }
-  isChecked() {
-    return this.checkboxInput.current ? this.checkboxInput.current.checked : false;
+  isFormValid() {
+    const isValid =
+      this.fileRef.current?.state?.isValid &&
+      this.nameRef.current?.state?.isValid &&
+      this.speciesRef.current?.state?.isValid &&
+      this.statusRef.current?.state?.isValid &&
+      this.genderRef.current?.state.isValid &&
+      this.dateRef.current?.state?.isValid &&
+      this.checkboxRef.current?.state?.isValid;
+    console.log(isValid);
+    return isValid;
   }
 
-  handleChange() {
-    const isValid = {
-      isNameValid: this.isNameValid(),
-      isSpeciesValid: this.isSpeciesValid(),
-      isGenderValid: this.isGenderValid(),
-      isStatusValid: this.isStatusValid(),
-      isDateValid: this.isDateValid(),
-      isFileValid: this.isFileValid(),
-      isChecked: this.isChecked(),
-    };
-    this.setState({
-      ...this.state,
-      isValid,
-    });
-    console.log('isValidAll:', isValid);
+  handleReset() {
+    this.fileRef.current?.reset();
+    this.nameRef.current?.reset();
+    this.speciesRef.current?.reset();
+    this.statusRef.current?.reset();
+    this.genderRef.current?.reset();
+    this.dateRef.current?.reset();
+    this.checkboxRef.current?.reset();
   }
 
   handleSubmit(event: React.FormEvent): void {
     event.preventDefault();
-    console.log(this.state);
-    const isValid =
-      this.state.isValid.isChecked &&
-      this.state.isValid.isDateValid &&
-      this.state.isValid.isFileValid &&
-      this.state.isValid.isGenderValid &&
-      this.state.isValid.isNameValid &&
-      this.state.isValid.isSpeciesValid &&
-      this.state.isValid.isStatusValid;
-    if (isValid) {
+    if (this.isFormValid()) {
       const cards = [...this.state.cards];
       cards.push({
         id: cards.length,
-        image: this.fileInput.current ? URL.createObjectURL(this.fileInput.current!.files![0]) : '',
-        name: this.nameInput.current?.value,
-        species: this.speciesInput.current?.value,
-        status: this.statusInput.current?.value,
-        gender: this.genderInputMale.current?.checked
-          ? this.genderInputMale.current?.value
-          : this.genderInputFemale.current?.value,
-        created: this.dateInput.current?.value,
+        image: this.fileRef.current?.state?.input,
+        name: this.nameRef.current?.state?.input,
+        species: this.speciesRef.current?.state?.input,
+        status: this.statusRef.current?.state?.input,
+        gender: this.genderRef.current?.state.input,
+        created: this.dateRef.current?.state?.input,
       });
       this.setState({
         ...this.state,
         cards,
         modal: true,
         showErrors: false,
-        isValid: {
-          isNameValid: false,
-          isSpeciesValid: false,
-          isGenderValid: false,
-          isStatusValid: false,
-          isDateValid: false,
-          isFileValid: false,
-          isChecked: false,
-        },
       });
       this.formInput.current?.reset();
-      console.log('isValid!');
+      this.isFormValid();
     } else {
-      console.log('isNotValid!');
+      console.log('Form is not valid!');
       this.setState({
         ...this.state,
         showErrors: true,
@@ -144,118 +89,17 @@ export class FormPage extends React.Component<object, FormProps> {
         <form
           className={'form'}
           onSubmit={this.handleSubmit}
-          onChange={this.handleChange}
-          // onReset={() => {
-          //   this.setState({
-          //     ...this.state,
-
-          //   });
-          // }}
+          onReset={this.handleReset}
           ref={this.formInput}
         >
-          <label>
-            Name:
-            <input
-              name="name"
-              placeholder="Character name"
-              ref={this.nameInput}
-              onChange={this.handleChange}
-            />
-            {this.state.showErrors && !this.state.isValid.isNameValid && (
-              <div className="error-msg">Name should start with a capital letter</div>
-            )}
-          </label>
-          <label>
-            Species:
-            <input
-              name="species"
-              placeholder="human, animal or unknown"
-              ref={this.speciesInput}
-              onChange={this.handleChange}
-            />
-            {this.state.showErrors && !this.state.isValid.isSpeciesValid && (
-              <div className="error-msg">Character can be human, animal or unknown</div>
-            )}
-          </label>
-          <div>
-            Gender:
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="male"
-                ref={this.genderInputMale}
-                onChange={this.handleChange}
-              />
-              Male
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="female"
-                ref={this.genderInputFemale}
-                onChange={this.handleChange}
-              />
-              Female
-            </label>
-            {this.state.showErrors && !this.state.isValid.isGenderValid && (
-              <div className="error-msg">{`Choose character's gender`}</div>
-            )}
-          </div>
-          <label>
-            Status:
-            <select
-              defaultValue={''}
-              name="status"
-              ref={this.statusInput}
-              onChange={this.handleChange}
-            >
-              <option value="" disabled>
-                -------
-              </option>
-              <option value="alive">Alive</option>
-              <option value="dead">Dead</option>
-              <option value="unknown">Unknown</option>
-            </select>
-            {this.state.showErrors && !this.state.isValid.isStatusValid && (
-              <div className="error-msg">{`Select character's status`}</div>
-            )}
-          </label>
-          <label>
-            Created at:
-            <input type="date" name="date" ref={this.dateInput} onChange={this.handleChange} />
-            {this.state.showErrors && !this.state.isValid.isDateValid && (
-              <div className="error-msg">Date should not be greater then the current date</div>
-            )}
-          </label>
-          <label>
-            Upload file:
-            <input
-              type="file"
-              name="file"
-              accept="image/jpeg"
-              ref={this.fileInput}
-              onChange={this.handleChange}
-            />
-            {this.state.showErrors && !this.state.isValid.isFileValid && (
-              <div className="error-msg">{`Uploading file should have '.jpg' extention`}</div>
-            )}
-          </label>
-          <label>
-            Confirm input:
-            <input
-              type="checkbox"
-              name="myCheckbox"
-              ref={this.checkboxInput}
-              onChange={this.handleChange}
-            />
-            {this.state.showErrors && !this.state.isValid.isChecked && (
-              <div className="error-msg">You should confirm the input</div>
-            )}
-          </label>
-          <button type="submit">Submit</button>
-          {/* <button type="reset">Reset form</button> */}
+          <NameInput showErrors={this.state.showErrors} ref={this.nameRef} />
+          <SpeciesInput showErrors={this.state.showErrors} ref={this.speciesRef} />
+          <GenderInput showErrors={this.state.showErrors} ref={this.genderRef} />
+          <StatusInput showErrors={this.state.showErrors} ref={this.statusRef} />
+          <DateInput showErrors={this.state.showErrors} ref={this.dateRef} />
+          <FileInput showErrors={this.state.showErrors} ref={this.fileRef} />
+          <Checkbox showErrors={this.state.showErrors} ref={this.checkboxRef} />
+          <button type="submit">Submit!</button>
         </form>
         {this.state.cards.length > 0 ? <Cards {...this.state} /> : ''}
         {this.state.modal ? (
