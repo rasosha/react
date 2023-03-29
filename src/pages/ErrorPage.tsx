@@ -1,7 +1,6 @@
 import React from 'react';
 
 function ErrorPage() {
-  document.title = `404 Page`;
   return (
     <>
       <main className="main">

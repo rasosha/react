@@ -23,7 +23,6 @@ class NameInput extends React.Component<inputProps, inputState> {
         isValid: this.isValid(),
         input: this.nameInput.current?.value,
       });
-      document.title = 'Card: ' + this.nameInput.current?.value || '';
     }
   };
 
