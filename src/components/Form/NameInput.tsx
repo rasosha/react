@@ -16,13 +16,16 @@ class NameInput extends React.Component<inputProps, inputState> {
     return this.nameInput.current ? /^(\b[A-Z]\w*\s*)+$/.test(this.nameInput.current.value) : false;
   }
 
-  handleChange() {
-    this.setState({
-      ...this.state,
-      isValid: this.isValid(),
-      input: this.nameInput.current?.value,
-    });
-  }
+  handleChange = async () => {
+    {
+      await this.setState({
+        ...this.state,
+        isValid: this.isValid(),
+        input: this.nameInput.current?.value,
+      });
+      document.title = 'Card: ' + this.nameInput.current?.value || '';
+    }
+  };
 
   reset() {
     this.nameInput.current!.value = '';

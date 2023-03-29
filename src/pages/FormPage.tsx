@@ -39,7 +39,6 @@ export class FormPage extends React.Component<object, FormProps> {
       this.genderRef.current?.state.isValid &&
       this.dateRef.current?.state?.isValid &&
       this.checkboxRef.current?.state?.isValid;
-    console.log(isValid);
     return isValid;
   }
 
@@ -84,6 +83,7 @@ export class FormPage extends React.Component<object, FormProps> {
   }
 
   render(): React.ReactNode {
+    document.title = 'Form Page';
     return (
       <main className="mainForm" data-testid="FormPage">
         <form
