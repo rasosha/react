@@ -1,39 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SearchBar extends Component<unknown, { inputText: string }> {
-  constructor(props: { inputText: string }) {
-    super(props);
-    this.state = { inputText: '' };
-    this.handleChange = this.handleChange.bind(this);
-  }
+export function SearchBar() {
+  const [inputText, setInputText] = React.useState(
+    localStorage.inputText ? localStorage.inputText : ''
+  );
 
-  handleChange(event: { target: { value: string } }) {
-    this.setState({ inputText: event.target.value });
-  }
+  React.useEffect(() => {
+    return () => (localStorage.inputText = inputText);
+  }, [inputText]);
 
-  componentDidMount(): void {
-    const inputText = localStorage.inputText || '';
-    this.setState({ inputText });
-  }
-
-  componentWillUnmount(): void {
-    localStorage.inputText = this.state.inputText;
-  }
-
-  render() {
-    return (
-      <div className="searchbar-div">
-        <input
-          type="text"
-          className="searchbar-input"
-          placeholder="Search..."
-          value={this.state.inputText}
-          onChange={this.handleChange}
-        />
-        <button className="searchbar-btn">🔍</button>
-      </div>
-    );
-  }
+  return (
+    <div className="searchbar-div">
+      <input
+        type="text"
+        className="searchbar-input"
+        placeholder="Search..."
+        value={inputText}
+        autoComplete="off"
+        onChange={(event) => setInputText(event.target.value)}
+      />
+      <button className="searchbar-btn">🔍</button>
+    </div>
+  );
 }
-
-export default SearchBar;
