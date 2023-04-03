@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Footer() {
+export function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid="footer">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50px" height="50px">
         <a href="https://github.com/rasosha">
           <path
@@ -55,5 +55,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;

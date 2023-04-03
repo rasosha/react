@@ -15,7 +15,7 @@ export function Header() {
   }, [currPage]);
 
   return (
-    <header className="header">
+    <header className="header" data-testid="header">
       <div className="links">
         <NavLink to="/" className="link" onClick={() => setCurrPage('Main Page')}>
           Main Page
