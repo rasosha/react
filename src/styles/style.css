@@ -1,0 +1,261 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace;
+}
+
+#root {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 50px calc(100vh - 100px) 50px;
+}
+
+.header,
+.footer,
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.header {
+  justify-content: space-between;
+  background-color: #cfdbdb;
+}
+
+.footer {
+  background-color: #cfdbdb;
+}
+
+.footer > * {
+  margin: 10px;
+}
+
+.header,
+.footer {
+  z-index: 10;
+  box-shadow: 0 0 10px black;
+}
+.header .links {
+  display: flex;
+  list-style: none;
+}
+
+.header .link {
+  text-decoration: none;
+  color: rgb(0, 0, 0, 0.8);
+  margin: 10px;
+  padding: 5px;
+}
+
+.link.active {
+  font-weight: 600;
+  background-color: #ffffff80;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px #ffffff80;
+}
+
+svg:hover {
+  transform: scale(105%);
+  transition: all 0.5s ease;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 5px gray);
+}
+
+.main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+}
+
+.cards {
+  overflow: auto;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding-top: 5px;
+}
+
+.card {
+  position: relative;
+  min-height: 250px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.card:hover {
+  background-color: #cfdbdb;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.card:hover .char-img,
+.card:hover .char-name {
+  transform: scale(105%);
+  transition: all 0.5s ease;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 5px gray);
+}
+
+.char-img {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  transition: all 0.5s ease;
+}
+
+.char-name {
+  background-color: #e6e0ce;
+  font-weight: bold;
+  /* font-size: 20px; */
+  text-align: center;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: all 0.5s ease;
+}
+
+.char-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 14px;
+  transition: all 0.5s ease-in-out;
+  padding: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-label {
+  list-style-type: circle;
+  list-style-position: outside;
+  font-style: italic;
+  margin: 5px 5px 5px 25px;
+}
+
+.info-text {
+  font-style: normal;
+}
+
+.searchbar-div {
+  z-index: 5;
+  min-height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px 5px #efefef;
+}
+
+.searchbar-input,
+.searchbar-btn,
+.card {
+  box-shadow: 0 5px 5px #cfdbdb;
+}
+.searchbar-input {
+  box-sizing: border-box;
+  position: relative;
+  height: 50px;
+  width: 50%;
+  outline: none;
+  border: 2px solid #cfdbdb;
+  border-radius: 25px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  font-size: 25px;
+  padding: 0 100px 0 20px;
+}
+
+.searchbar-btn {
+  height: 50px;
+  width: 50px;
+  border: 2px solid #cfdbdb;
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background-color: transparent;
+  border-left: 0;
+  font-size: 20px;
+}
+
+.searchbar-btn:hover {
+  cursor: pointer;
+  background-color: rgb(201, 201, 201);
+}
+
+main > ::-webkit-scrollbar {
+  width: 20px;
+  height: 50%;
+}
+
+::-webkit-scrollbar-button {
+  background-color: transparent;
+}
+
+main > ::-webkit-scrollbar-track {
+  background: #e6e0ce;
+  border-radius: 50px;
+}
+
+main > ::-webkit-scrollbar-thumb {
+  background-color: #cfdbdb;
+  border-radius: 50px;
+  border: 3px solid #cfdbdb;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-self: center;
+}
+
+
+.modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 100px);
+  background-color: #383838f1;
+  color: white;
+}
+
+.mainForm {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+}
+
+.error-msg {
+  color: red;
+  font-size: small;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
