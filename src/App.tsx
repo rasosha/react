@@ -5,7 +5,7 @@ import IndexPage from './pages/IndexPage';
 import ErrorPage from './pages/ErrorPage';
 import AboutPage from './pages/AboutPage';
 import { Page } from './components/Page';
-import FormPage from './pages/FormPage';
+import { FormPage } from './pages/FormPage';
 
 export function App() {
   return (

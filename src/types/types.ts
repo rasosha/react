@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-empty-interface */
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+
 export interface ICard {
   id?: number;
   name?: string;
@@ -10,17 +11,16 @@ export interface ICard {
 }
 
 export interface FormProps {
-  showErrors: boolean;
-  modal: boolean;
-  cards: ICard[];
+  register: UseFormRegister<FormInputs>;
+  errors: FieldErrors<FormInputs>;
 }
 
-export interface inputProps {
-  showErrors: boolean;
-}
-
-export interface inputState {
-  isValid?: boolean;
-  input?: string | undefined;
-  checked?: boolean;
+export interface FormInputs {
+  NameInput: string;
+  SpeciesInput: string;
+  GenderInput: string;
+  StatusInput: string;
+  DateInput: string;
+  FileInput: string;
+  Checkbox: string;
 }
