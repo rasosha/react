@@ -5,7 +5,7 @@ import Cards from '../../components/Cards';
 
 describe('Cards tests', async () => {
   it('Should render cards div', async () => {
-    await render(<Cards />);
+    await render(<Cards cards={[]} />);
     expect(screen.getByTestId('cards')).toBeInTheDocument();
   });
 });
