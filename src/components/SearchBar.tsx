@@ -1,13 +1,12 @@
 import React from 'react';
 
-export function SearchBar() {
-  const [inputText, setInputText] = React.useState(
-    localStorage.inputText ? localStorage.inputText : ''
-  );
-
+export function SearchBar(props: {
+  inputValue: string;
+  onInputValueChange: React.Dispatch<React.SetStateAction<string>>;
+}) {
   React.useEffect(() => {
-    return () => (localStorage.inputText = inputText);
-  }, [inputText]);
+    return localStorage.setItem('inputText', props.inputValue);
+  });
 
   return (
     <div className="searchbar-div">
@@ -15,9 +14,11 @@ export function SearchBar() {
         type="text"
         className="searchbar-input"
         placeholder="Search..."
-        value={inputText}
+        value={props.inputValue}
         autoComplete="off"
-        onChange={(event) => setInputText(event.target.value)}
+        onChange={(event) => {
+          props.onInputValueChange(event.target.value);
+        }}
       />
       <button className="searchbar-btn">🔍</button>
     </div>

@@ -40,7 +40,7 @@ export function FormPage() {
 
   return (
     <main className="mainForm" data-testid="FormPage">
-      <form className={'form'} onSubmit={onSubmit} onChange={() => console.log(cards)}>
+      <form className={'form'} onSubmit={onSubmit} >
         <NameInput register={register} errors={errors} />
         <SpeciesInput register={register} errors={errors} />
         <GenderInput register={register} errors={errors} />

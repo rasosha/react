@@ -24,3 +24,14 @@ export interface FormInputs {
   FileInput: string;
   Checkbox: string;
 }
+
+export interface FetchData {
+  info?: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results?: ICard[];
+  error?: string;
+}

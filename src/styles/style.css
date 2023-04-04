@@ -67,11 +67,14 @@ svg:hover {
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background-color: #efefef;
 }
 
+.about {
+  justify-content: center;
+}
 .cards {
   overflow: auto;
   display: flex;
