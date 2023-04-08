@@ -84,6 +84,10 @@ svg:hover {
   align-items: center;
 }
 
+.loader{
+  z-index: 10000;
+}
+
 .cards {
   overflow: auto;
   display: flex;
@@ -334,8 +338,31 @@ main > ::-webkit-scrollbar-thumb {
 
 .pager {
   display: flex;
+  align-items: center;
+  color: #55555560;
+}
+.pager > p {
+  color: black;
 }
 
-.pager > *{
+.pager > button{
   margin: 10px;
+  width: 50px;
+  height: 25px;
+}
+
+.pager > button:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pager > button:active {
+  cursor: pointer;
+  background-color: #555;
+  color: white;
+}
+
+.pager > button:disabled {
+  cursor: pointer;
+  opacity: 0;
 }

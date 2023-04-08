@@ -5,6 +5,7 @@ export default function Pager(props: {
   info: FetchDataInfo | undefined;
   setPage: React.Dispatch<React.SetStateAction<number>>;
   isLoaded: boolean;
+  isError: boolean;
   page: number;
 }) {
   useEffect(() => {
@@ -16,32 +17,35 @@ export default function Pager(props: {
   const [next, setNext] = useState(props.info?.next);
 
   return (
-    <div className="pager">
-      {prev && props.isLoaded ? (
-        <button
-          onClick={() => {
-            props.setPage(props.page - 1);
-          }}
-        >
-          prev
-        </button>
-      ) : (
-        <button disabled>prev</button>
+    <>
+      {!props.isError && (
+        <div className="pager">
+          {prev && props.isLoaded ? (
+            <button
+              onClick={() => {
+                props.setPage(props.page - 1);
+              }}
+            >
+              prev
+            </button>
+          ) : (
+            <button disabled>prev</button>
+          )}
+          <p>{props.page} </p>
+          <span>/{props.info?.pages || 1}</span>
+          {next && props.isLoaded ? (
+            <button
+              onClick={() => {
+                props.setPage(props.page + 1);
+              }}
+            >
+              next
+            </button>
+          ) : (
+            <button disabled>next</button>
+          )}
+        </div>
       )}
-      <p>
-        {props.page} / {props.info?.pages}
-      </p>
-      {next && props.isLoaded ? (
-        <button
-          onClick={() => {
-            props.setPage(props.page + 1);
-          }}
-        >
-          next
-        </button>
-      ) : (
-        <button disabled>next</button>
-      )}
-    </div>
+    </>
   );
 }

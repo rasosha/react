@@ -52,9 +52,6 @@ export default function IndexPage() {
           setName={setName}
           setPage={setPage}
         />
-        {fetchData && (
-          <Pager page={page} setPage={setPage} info={fetchData.info} isLoaded={isLoaded} />
-        )}
         {!isLoaded && !isError ? (
           <Loader />
         ) : !isError ? (
@@ -67,6 +64,15 @@ export default function IndexPage() {
           <div className="card-error">
             <p>no cards here...</p>
           </div>
+        )}
+        {fetchData && (
+          <Pager
+            page={page}
+            setPage={setPage}
+            info={fetchData.info}
+            isLoaded={isLoaded}
+            isError={isError}
+          />
         )}
       </main>
     </>
