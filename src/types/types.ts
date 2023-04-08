@@ -25,13 +25,15 @@ export interface FormInputs {
   Checkbox: string;
 }
 
+export interface FetchDataInfo {
+  count?: number;
+  pages?: number;
+  next?: string | null;
+  prev?: string | null;
+}
+
 export interface FetchData {
-  info?: {
-    count: number;
-    pages: number;
-    next: string | null;
-    prev: string | null;
-  };
+  info?: FetchDataInfo;
   results?: ICard[];
   error?: string;
 }

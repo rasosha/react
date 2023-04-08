@@ -75,6 +75,15 @@ svg:hover {
 .about {
   justify-content: center;
 }
+
+.loader, .card-error{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .cards {
   overflow: auto;
   display: flex;
@@ -87,12 +96,12 @@ svg:hover {
 
 .card {
   position: relative;
-  min-height: 250px;
-  width: 250px;
+  min-height: 200px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .card:hover {
@@ -110,8 +119,8 @@ svg:hover {
 }
 
 .char-img {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   border-radius: 10px 10px 0 0;
   background-size: cover;
   display: flex;
@@ -166,6 +175,7 @@ svg:hover {
 
 .searchbar-input,
 .searchbar-btn,
+.searchbar-clear,
 .card {
   box-shadow: 0 5px 5px #cfdbdb;
 }
@@ -183,18 +193,22 @@ svg:hover {
   padding: 0 100px 0 20px;
 }
 
-.searchbar-btn {
+.searchbar-btn,
+.searchbar-clear {
   height: 50px;
   width: 50px;
   border: 2px solid #cfdbdb;
-  border-radius: 25px;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
   background-color: transparent;
   border-left: 0;
   font-size: 20px;
 }
 
+.searchbar-btn{
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.searchbar-clear:hover,
 .searchbar-btn:hover {
   cursor: pointer;
   background-color: rgb(201, 201, 201);
@@ -261,4 +275,67 @@ main > ::-webkit-scrollbar-thumb {
 
 .green {
   color: green;
+}
+
+.card-modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #555555ef;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-div{
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background-color: #cfdbdb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  filter: drop-shadow(0 0 10px black);
+}
+
+.card-full{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-full-photo {
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px black);
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(255, 174, 187);
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  content: "X";
+  border-radius: 50%;
+  transition: all .25s ease;
+}
+.close-btn:hover {
+  color: white;
+  background-color: rgb(150, 49, 66);
+  transform: rotate(180deg);
+  transition: all .25s ease;
+}
+
+.pager {
+  display: flex;
+}
+
+.pager > *{
+  margin: 10px;
 }
