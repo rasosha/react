@@ -8,6 +8,12 @@ export interface ICard {
   gender?: string;
   image?: string;
   created?: string;
+  origin?: {
+    name?: string;
+  };
+  location?: {
+    name?: string;
+  };
 }
 
 export interface FormProps {

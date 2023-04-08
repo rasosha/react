@@ -33,6 +33,8 @@ export default function CardFull(props: { id: number }) {
           <p>Gender: {cardData.gender}</p>
           <p>Species: {cardData.species}</p>
           <p>Status: {cardData.status}</p>
+          <p>Origin: {cardData.origin?.name}</p>
+          <p>Loaction: {cardData.location?.name}</p>
         </>
       ) : (
         <Loader />
