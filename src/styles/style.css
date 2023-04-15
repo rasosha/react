@@ -177,6 +177,11 @@ svg:hover {
   box-shadow: 0 0 5px 5px #efefef;
 }
 
+.searchbar-form{
+  display: flex;
+  justify-content: center;
+}
+
 .searchbar-input,
 .searchbar-btn,
 .searchbar-clear,
@@ -187,7 +192,6 @@ svg:hover {
   box-sizing: border-box;
   position: relative;
   height: 50px;
-  width: 50%;
   outline: none;
   border: 2px solid #cfdbdb;
   border-radius: 25px;
