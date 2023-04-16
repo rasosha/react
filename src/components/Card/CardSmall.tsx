@@ -1,9 +1,9 @@
 import React from 'react';
-import { ICard } from '../types/types';
+import { ICard } from '../../types/types';
 
 export function Card(props: {
   cards: ICard;
-  setModal?: React.Dispatch<React.SetStateAction<number>>;
+  setModalCard: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const { id = 0, image = '', name = '' } = props.cards;
 
@@ -13,7 +13,7 @@ export function Card(props: {
         <div
           className="card-char"
           onClick={() => {
-            props.setModal ? props.setModal(id) : '';
+            props.setModalCard ? props.setModalCard(id) : '';
           }}
         >
           <div className="char-img" style={{ backgroundImage: `url(${image})` }}></div>

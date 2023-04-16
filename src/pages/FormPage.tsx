@@ -24,11 +24,15 @@ export function FormPage() {
   return (
     <main className="mainForm" data-testid="FormPage">
       {!(modalCard === 0) && (
-        <CardModal id={modalCard} cards={formData.cards} setModalCard={setModalCard} />
+        <CardModal id={modalCard} cards={formData.myCards} setModalCard={setModalCard} />
       )}
       <FormComponent setCurrentCard={setCurrentCard} />
       <>
-        {formData.cards.length > 0 ? <Cards cards={formData.cards} setModal={setModalCard} /> : ''}
+        {formData.myCards.length > 0 ? (
+          <Cards cards={formData.myCards} setModalCard={setModalCard} />
+        ) : (
+          ''
+        )}
         {modalMsg ? (
           <div className="modal">
             <h2>Confirmation message:</h2>

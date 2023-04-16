@@ -14,7 +14,7 @@ export default function IndexPage() {
   const [fetchData, setFetchData] = useState<FetchData>();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [modal, setModal] = useState(0);
+  const [modalCard, setModalCard] = useState(0);
   const [inputValue, setInputValue] = useState(
     localStorage.inputText ? localStorage.inputText : ''
   );
@@ -45,19 +45,14 @@ export default function IndexPage() {
   return (
     <>
       <main className="main" data-testid="IndexPage">
-        {!(modal === 0) && <CardModal id={modal} setModal={setModal} />}
-        <SearchBar
-          inputValue={inputValue}
-          onInputValueChange={setInputValue}
-          setName={setName}
-          setPage={setPage}
-        />
+        {!(modalCard === 0) && <CardModal id={modalCard} setModalCard={setModalCard} />}
+        <SearchBar />
         {!isLoaded && !isError ? (
           <Loader />
         ) : !isError ? (
           fetchData?.results && (
             <>
-              <Cards cards={fetchData.results} setModal={setModal} />
+              <Cards cards={fetchData.results} setModalCard={setModalCard} />
             </>
           )
         ) : (

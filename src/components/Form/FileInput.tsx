@@ -2,7 +2,6 @@ import React from 'react';
 import { FormProps } from '../../types/types';
 
 export function FileInput(props: FormProps) {
-  // console.log(props);
   return (
     <label>
       Upload file:

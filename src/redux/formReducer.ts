@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ICardsArr } from '../types/types';
 
 const initialState: ICardsArr = {
-  cards: [],
+  myCards: [],
 };
 
 export const formSlice = createSlice({
@@ -10,7 +10,7 @@ export const formSlice = createSlice({
   initialState,
   reducers: {
     setForm: (state, action) => {
-      state.cards.push(action.payload.payload);
+      state.myCards.push(action.payload.payload);
     },
   },
 });

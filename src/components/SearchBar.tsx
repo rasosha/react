@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchInput } from '../redux/searchReducer';
+import { State } from '../redux/store';
 
-export function SearchBar(props: {
-  inputValue: string;
-  onInputValueChange: React.Dispatch<React.SetStateAction<string>>;
-  setName: React.Dispatch<React.SetStateAction<string>>;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-}) {
-  React.useEffect(() => {
-    return localStorage.setItem('inputText', props.inputValue);
-  });
+export function SearchBar() {
+  const search = useSelector((state: State) => state.search);
+  const dispatch = useDispatch();
+  const [input, setInput] = useState(search.inputValue);
 
   return (
     <div className="searchbar-div">
@@ -16,29 +14,25 @@ export function SearchBar(props: {
         className="searchbar-form"
         onSubmit={(event) => {
           event.preventDefault();
-          props.setPage(1);
-          props.setName(props.inputValue);
+          dispatch(searchInput({ type: 'SET_VALUE', payload: input }));
+        }}
+        onReset={(event) => {
+          event.preventDefault();
+          dispatch(searchInput({ type: 'SET_VALUE', payload: '' }));
+          setInput('');
         }}
       >
         <input
           type="text"
           className="searchbar-input"
           placeholder="Search..."
-          value={props.inputValue}
+          value={input}
           autoComplete="off"
           onChange={(event) => {
-            props.onInputValueChange(event.target.value);
+            setInput(event.target.value);
           }}
         />
-        <button
-          type="reset"
-          className="searchbar-clear"
-          onClick={() => {
-            props.setPage(1);
-            props.setName('');
-            props.onInputValueChange('');
-          }}
-        >
+        <button type="reset" className="searchbar-clear">
           &#x2716;
         </button>
         <button type="submit" className="searchbar-btn">

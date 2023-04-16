@@ -17,7 +17,7 @@ export interface ICard {
 }
 
 export interface ICardsArr {
-  cards: ICard[];
+  myCards: ICard[];
 }
 
 export interface FormProps {

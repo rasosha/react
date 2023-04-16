@@ -27,7 +27,7 @@ export const FormComponent = (props: {
 
   const onSubmit = handleSubmit((data) => {
     const newCard = {
-      id: formData.cards.length + 1,
+      id: formData.myCards.length + 1,
       image: URL.createObjectURL(data.FileInput[0] as unknown as MediaSource),
       name: data.NameInput,
       species: data.SpeciesInput,
