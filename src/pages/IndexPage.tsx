@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import CardModal from '../components/CardModal';
-import Cards from '../components/Cards';
+import React, { useEffect, useState } from 'react';
+import CardModal from '../components/Card/CardModal';
+import Cards from '../components/Card/Cards';
 import Loader from '../components/Loader';
 import Pager from '../components/Pager';
 import { SearchBar } from '../components/SearchBar';
@@ -19,11 +19,11 @@ export default function IndexPage() {
     localStorage.inputText ? localStorage.inputText : ''
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     setAPI(`${url}?page=${page}&name=${name}`);
   }, [name, page, url]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsLoaded(false);
     setIsError(false);
     fetch(API)

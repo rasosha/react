@@ -12,8 +12,8 @@ export function DateInput(props: FormProps) {
             message: 'select date',
           },
           max: {
-            value: '2023-04-04',
-            message: 'Date should be less than 05.04.2023',
+            value: '2023-20-04',
+            message: 'Date should be less than 20.04.2023',
           },
         })}
         type="date"

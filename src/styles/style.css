@@ -320,6 +320,8 @@ main > ::-webkit-scrollbar-thumb {
   border-radius: 50%;
   filter: drop-shadow(0 0 10px black);
   margin-bottom: 20px;
+  width: 250px;
+  height: 250px;
 }
 
 .close-btn {

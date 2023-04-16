@@ -1,9 +1,11 @@
 import React from 'react';
+import { ICard } from '../types/types';
 import CardFull from './CardFull';
 
 export default function CardModal(props: {
   id: number;
   setModal: React.Dispatch<React.SetStateAction<number>>;
+  cards?: ICard[];
 }) {
   return (
     <div
@@ -16,7 +18,7 @@ export default function CardModal(props: {
       }}
     >
       <div className="card-div">
-        <CardFull id={props.id} />
+        <CardFull id={props.id} cards={props.cards} />
         <button onClick={() => props.setModal(0)} className="close-btn">
           &#x2716;
         </button>
