@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { setForm } from '../../redux/formReducer';
+import { State } from '../../redux/store';
 import { FormInputs, ICard } from '../../types/types';
 import { Checkbox } from './Checkbox';
 import { DateInput } from './DateInput';
@@ -12,6 +15,8 @@ import { StatusInput } from './StatusInput';
 export const FormComponent = (props: {
   setCurrentCard: React.Dispatch<React.SetStateAction<ICard>>;
 }) => {
+  const formData = useSelector((state: State) => state.form);
+  const dispatch = useDispatch();
   const [length, setLength] = useState(0);
   const {
     register,
@@ -21,9 +26,8 @@ export const FormComponent = (props: {
   } = useForm<FormInputs>({ mode: 'onSubmit', reValidateMode: 'onSubmit' });
 
   const onSubmit = handleSubmit((data) => {
-    setLength(length + 1);
     const newCard = {
-      id: length + 1,
+      id: formData.cards.length + 1,
       image: URL.createObjectURL(data.FileInput[0] as unknown as MediaSource),
       name: data.NameInput,
       species: data.SpeciesInput,
@@ -31,7 +35,14 @@ export const FormComponent = (props: {
       gender: data.GenderInput,
       created: data.DateInput,
     };
+    dispatch(
+      setForm({
+        type: 'FORM_INPUT',
+        payload: newCard,
+      })
+    );
     props.setCurrentCard(newCard);
+    setLength(length + 1);
     reset();
   });
 

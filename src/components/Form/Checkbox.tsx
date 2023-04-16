@@ -13,6 +13,7 @@ export function Checkbox(props: FormProps) {
           },
         })}
         type="checkbox"
+        checked={true}
       />
       {props.errors.Checkbox && <p className="error-msg">{props.errors.Checkbox.message}</p>}
     </label>

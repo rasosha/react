@@ -12,7 +12,7 @@ export function StatusInput(props: FormProps) {
             message: 'select something',
           },
         })}
-        defaultValue={''}
+        defaultValue={'alive'}
       >
         <option value="" disabled>
           -------

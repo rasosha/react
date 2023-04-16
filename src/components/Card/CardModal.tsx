@@ -1,10 +1,10 @@
 import React from 'react';
-import { ICard } from '../types/types';
+import { ICard } from '../../types/types';
 import CardFull from './CardFull';
 
 export default function CardModal(props: {
+  setModalCard: React.Dispatch<React.SetStateAction<number>>;
   id: number;
-  setModal: React.Dispatch<React.SetStateAction<number>>;
   cards?: ICard[];
 }) {
   return (
@@ -12,14 +12,14 @@ export default function CardModal(props: {
       className="card-modal"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
-          props.setModal(0);
+          props.setModalCard(0);
         } else {
         }
       }}
     >
       <div className="card-div">
         <CardFull id={props.id} cards={props.cards} />
-        <button onClick={() => props.setModal(0)} className="close-btn">
+        <button onClick={() => props.setModalCard(0)} className="close-btn">
           &#x2716;
         </button>
       </div>

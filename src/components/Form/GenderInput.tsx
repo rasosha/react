@@ -15,6 +15,7 @@ export function GenderInput(props: FormProps) {
         autoComplete="off"
         type="radio"
         value="male"
+        checked={true}
       />
       <label htmlFor="GenderInput">Male</label>
       <input {...props.register('GenderInput')} type="radio" value="female" />

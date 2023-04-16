@@ -16,6 +16,10 @@ export interface ICard {
   };
 }
 
+export interface ICardsArr {
+  cards: ICard[];
+}
+
 export interface FormProps {
   register: UseFormRegister<FormInputs>;
   errors: FieldErrors<FormInputs>;

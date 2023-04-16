@@ -13,6 +13,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -44,7 +45,6 @@
     "jsdom": "^21.1.1",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
-    "redux-devtools-extension": "^2.13.9",
     "typescript": "^4.9.5",
     "vite": "^4.1.0",
     "vite-plugin-eslint": "^1.8.1",
