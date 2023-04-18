@@ -13,7 +13,7 @@ export function Checkbox(props: FormProps) {
           },
         })}
         type="checkbox"
-        defaultChecked={true}
+        defaultChecked={props.testMode ? true : false}
       />
       {props.errors.Checkbox && <p className="error-msg">{props.errors.Checkbox.message}</p>}
     </label>

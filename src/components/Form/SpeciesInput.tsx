@@ -18,7 +18,7 @@ export function SpeciesInput(props: FormProps) {
         })}
         autoComplete="off"
         placeholder="human, animal or unknown"
-        defaultValue={'human'}
+        defaultValue={props.testMode ? 'human' : ''}
       />
       {props.errors.SpeciesInput && (
         <p className="error-msg">{props.errors.SpeciesInput.message}</p>

@@ -23,6 +23,7 @@ export interface ICardsArr {
 export interface FormProps {
   register: UseFormRegister<FormInputs>;
   errors: FieldErrors<FormInputs>;
+  testMode?: boolean;
 }
 
 export interface FormInputs {

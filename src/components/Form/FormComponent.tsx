@@ -46,15 +46,16 @@ export const FormComponent = (props: {
     reset();
   });
 
+  const testMode = false;
   return (
     <form className={'form'} onSubmit={onSubmit}>
-      <NameInput register={register} errors={errors} />
-      <SpeciesInput register={register} errors={errors} />
-      <GenderInput register={register} errors={errors} />
-      <StatusInput register={register} errors={errors} />
-      <DateInput register={register} errors={errors} />
+      <NameInput register={register} errors={errors} testMode={testMode} />
+      <SpeciesInput register={register} errors={errors} testMode={testMode} />
+      <GenderInput register={register} errors={errors} testMode={testMode} />
+      <StatusInput register={register} errors={errors} testMode={testMode} />
+      <DateInput register={register} errors={errors} testMode={testMode} />
       <FileInput register={register} errors={errors} />
-      <Checkbox register={register} errors={errors} />
+      <Checkbox register={register} errors={errors} testMode={testMode} />
       <input type="submit" />
     </form>
   );
