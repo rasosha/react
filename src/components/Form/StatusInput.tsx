@@ -12,7 +12,7 @@ export function StatusInput(props: FormProps) {
             message: 'select something',
           },
         })}
-        value={props.testMode ? 'alive' : ''}
+        defaultValue={''}
       >
         <option value="" disabled>
           -------

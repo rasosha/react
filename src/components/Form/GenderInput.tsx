@@ -16,7 +16,6 @@ export function GenderInput(props: FormProps) {
           autoComplete="off"
           type="radio"
           value="male"
-          checked={props.testMode ? true : false}
         />
         Male
       </label>
