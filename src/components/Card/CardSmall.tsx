@@ -1,11 +1,11 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { setModalCard } from '../../redux/appReducer';
 import { ICard } from '../../types/types';
 
-export function Card(props: {
-  cards: ICard;
-  setModalCard: React.Dispatch<React.SetStateAction<number>>;
-}) {
+export function Card(props: { cards: ICard }) {
   const { id = 0, image = '', name = '' } = props.cards;
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -13,7 +13,7 @@ export function Card(props: {
         <div
           className="card-char"
           onClick={() => {
-            props.setModalCard ? props.setModalCard(id) : '';
+            dispatch(setModalCard(id));
           }}
         >
           <div className="char-img" style={{ backgroundImage: `url(${image})` }}></div>

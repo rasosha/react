@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 export function FormPage() {
   const [modalMsg, setModalMsg] = useState(false);
-  const [modalCard, setModalCard] = useState(0);
+  const modalCard = useSelector((state: State) => state.myApp.modalCard);
   const [currentCard, setCurrentCard] = useState<ICard>({});
   const formData = useSelector((state: State) => state.form);
 
@@ -23,26 +23,18 @@ export function FormPage() {
 
   return (
     <main className="mainForm" data-testid="FormPage">
-      {!(modalCard === 0) && (
-        <CardModal id={modalCard} cards={formData.myCards} setModalCard={setModalCard} />
-      )}
+      {!(modalCard === 0) && <CardModal />}
       <FormComponent setCurrentCard={setCurrentCard} />
-      <>
-        {formData.myCards.length > 0 ? (
-          <Cards cards={formData.myCards} setModalCard={setModalCard} />
-        ) : (
-          ''
-        )}
-        {modalMsg ? (
-          <div className="modal">
-            <h2>Confirmation message:</h2>
-            <p>Data has been saved!</p>
-            <button onClick={() => setModalMsg(false)}>ok!</button>
-          </div>
-        ) : (
-          ''
-        )}
-      </>
+      {formData.myCards.length > 0 && <Cards />}
+      {modalMsg ? (
+        <div className="modal">
+          <h2>Confirmation message:</h2>
+          <p>Data has been saved!</p>
+          <button onClick={() => setModalMsg(false)}>ok!</button>
+        </div>
+      ) : (
+        ''
+      )}
     </main>
   );
 }

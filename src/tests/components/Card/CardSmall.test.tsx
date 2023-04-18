@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { Card } from '../../components/CardSmall';
+import { Card } from '../../../components/Card/CardSmall';
 
 const testCardProps = {
   id: 777,

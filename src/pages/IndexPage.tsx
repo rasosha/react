@@ -1,58 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import CardModal from '../components/Card/CardModal';
 import Cards from '../components/Card/Cards';
 import Loader from '../components/Loader';
 import Pager from '../components/Pager';
 import { SearchBar } from '../components/SearchBar';
-import { FetchData } from '../types/types';
+import { useGetByNameQuery } from '../redux/apiReducer';
+import { setQuery, setResults } from '../redux/appReducer';
+import { State } from '../redux/store';
 
 export default function IndexPage() {
-  const url = `https://rickandmortyapi.com/api/character/`;
-  const [name, setName] = useState(localStorage.inputText || '');
-  const [page, setPage] = useState(1);
-  const [API, setAPI] = useState(localStorage.inputText ? `${url}?name=${name}` : url);
-  const [fetchData, setFetchData] = useState<FetchData>();
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [modalCard, setModalCard] = useState(0);
-  const [inputValue, setInputValue] = useState(
-    localStorage.inputText ? localStorage.inputText : ''
-  );
+  const { page, inputValue, modalCard, query } = useSelector((state: State) => state.myApp);
+  const { isError, isFetching, data } = useGetByNameQuery(query);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setAPI(`${url}?page=${page}&name=${name}`);
-  }, [name, page, url]);
-
-  useEffect(() => {
-    setIsLoaded(false);
-    setIsError(false);
-    fetch(API)
-      .then((res) => {
-        if (!res.ok) {
-          setIsError(true);
-          throw Error(`Hm... could not fetch "${API}"`);
-        } else {
-          return res.json();
-        }
-      })
-      .then((data: FetchData) => {
-        setFetchData(data);
-      })
-      .then(() => setIsLoaded(true))
-      .catch((e) => console.error(e.message));
-  }, [API]);
+  React.useEffect(() => {
+    const newQuery = `page=${page}&name=${inputValue}`;
+    dispatch(setQuery({ payload: newQuery }));
+    dispatch(setResults({ data, isError, isFetching }));
+    console.log(data, isError, isFetching);
+  }, [data, dispatch, inputValue, isError, isFetching, page, query]);
 
   return (
     <>
       <main className="main" data-testid="IndexPage">
-        {!(modalCard === 0) && <CardModal id={modalCard} setModalCard={setModalCard} />}
+        {!(modalCard === 0) && <CardModal />}
         <SearchBar />
-        {!isLoaded && !isError ? (
+        {isFetching && !isError ? (
           <Loader />
         ) : !isError ? (
-          fetchData?.results && (
+          data.results && (
             <>
-              <Cards cards={fetchData.results} setModalCard={setModalCard} />
+              <Cards />
             </>
           )
         ) : (
@@ -60,15 +39,7 @@ export default function IndexPage() {
             <p>no cards here...</p>
           </div>
         )}
-        {fetchData && (
-          <Pager
-            page={page}
-            setPage={setPage}
-            info={fetchData.info}
-            isLoaded={isLoaded}
-            isError={isError}
-          />
-        )}
+        {data && <Pager />}
       </main>
     </>
   );

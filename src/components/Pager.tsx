@@ -1,29 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { FetchDataInfo } from '../types/types';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetByNameQuery } from '../redux/apiReducer';
+import { nextPage, prevPage } from '../redux/appReducer';
+import { State } from '../redux/store';
 
-export default function Pager(props: {
-  info: FetchDataInfo | undefined;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  isLoaded: boolean;
-  isError: boolean;
-  page: number;
-}) {
-  useEffect(() => {
-    setPrev(props.info?.prev);
-    setNext(props.info?.next);
-  }, [props.info?.next, props.info?.prev, props.page]);
-
-  const [prev, setPrev] = useState(props.info?.prev);
-  const [next, setNext] = useState(props.info?.next);
+export default function Pager() {
+  const { page, query, isError, isLoading } = useSelector((state: State) => state.myApp);
+  const isShown = !isError || !isLoading;
+  const { data } = useGetByNameQuery(query);
+  const dispatch = useDispatch();
 
   return (
     <>
-      {!props.isError && (
+      {isShown && (
         <div className="pager">
-          {prev && props.isLoaded ? (
+          {data.info.prev && !isLoading ? (
             <button
               onClick={() => {
-                props.setPage(props.page - 1);
+                dispatch(prevPage());
               }}
             >
               prev
@@ -31,12 +25,12 @@ export default function Pager(props: {
           ) : (
             <button disabled>prev</button>
           )}
-          <p>{props.page} </p>
-          <span>/{props.info?.pages || 1}</span>
-          {next && props.isLoaded ? (
+          <p>{page} </p>
+          <span>/{data.info.pages || 1}</span>
+          {data.info.next && !isLoading ? (
             <button
               onClick={() => {
-                props.setPage(props.page + 1);
+                dispatch(nextPage());
               }}
             >
               next

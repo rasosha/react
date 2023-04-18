@@ -11,7 +11,7 @@ export default defineConfig({
     target: 'esnext',
   },
   server: {
-    port: 12345,
+    port: 3000,
   },
   preview: {
     port: 8080,

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchInput } from '../redux/searchReducer';
+import { searchInput } from '../redux/appReducer';
+// import { searchInput } from '../redux/searchReducer';
 import { State } from '../redux/store';
 
 export function SearchBar() {
-  const search = useSelector((state: State) => state.search);
+  const search = useSelector((state: State) => state.myApp.inputValue);
   const dispatch = useDispatch();
-  const [input, setInput] = useState(search.inputValue);
+  const [input, setInput] = useState(search);
 
   return (
     <div className="searchbar-div">
@@ -15,6 +16,7 @@ export function SearchBar() {
         onSubmit={(event) => {
           event.preventDefault();
           dispatch(searchInput({ type: 'SET_VALUE', payload: input }));
+          console.log('input:', input);
         }}
         onReset={(event) => {
           event.preventDefault();

@@ -1,25 +1,24 @@
 import React from 'react';
-import { ICard } from '../../types/types';
+import { useDispatch } from 'react-redux';
+import { setModalCard } from '../../redux/appReducer';
 import CardFull from './CardFull';
 
-export default function CardModal(props: {
-  setModalCard: React.Dispatch<React.SetStateAction<number>>;
-  id: number;
-  cards?: ICard[];
-}) {
+export default function CardModal() {
+  const dispatch = useDispatch();
+
   return (
     <div
       className="card-modal"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
-          props.setModalCard(0);
+          dispatch(setModalCard(0));
         } else {
         }
       }}
     >
       <div className="card-div">
-        <CardFull id={props.id} cards={props.cards} />
-        <button onClick={() => props.setModalCard(0)} className="close-btn">
+        <CardFull />
+        <button onClick={() => dispatch(setModalCard(0))} className="close-btn">
           &#x2716;
         </button>
       </div>

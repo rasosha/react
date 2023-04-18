@@ -1,44 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { State } from '../../redux/store';
 import { ICard } from '../../types/types';
 import Loader from '../Loader';
 
-export default function CardFull(props: { cards?: ICard[]; id: number }) {
-  const [cardData, setCardData] = useState<ICard>();
+export default function CardFull() {
+  const id = useSelector((state: State) => state.myApp.modalCard);
+  const currPage = useSelector((state: State) => state.myApp.currPage);
+  const fetchCards: ICard[] = useSelector((state: State) => state.myApp.results);
+  const myCards = useSelector((state: State) => state.form.myCards);
 
-  React.useEffect(() => {
-    if (props.cards) {
-      setCardData(props.cards.filter((card) => card.id === props.id)[0]);
+  const theCard = (): ICard => {
+    if (currPage === 'Main Page') {
+      return fetchCards.filter((card: ICard) => card.id === id)[0];
+    } else if (currPage === 'Form Page') {
+      return myCards[id - 1];
     } else {
-      const API = `https://rickandmortyapi.com/api/character/`;
-      fetch(`${API}/${props.id}`)
-        .then((res) => {
-          if (!res.ok) {
-            throw Error('Could not fetch this');
-          } else {
-            return res.json();
-          }
-        })
-        .then((data: ICard) => {
-          setCardData(data);
-        });
+      return {};
     }
-  }, [props.cards, props.id]);
+  };
 
   return (
     <div className="card-full">
-      {cardData ? (
+      {theCard() ? (
         <>
-          <img src={cardData.image} alt="photo" className="card-full-photo" />
-          <p>Name: {cardData.name}</p>
-          <p>
-            Created:{' '}
-            {cardData.created ? new Date(cardData.created).toLocaleDateString('ru-RU') : ''}
-          </p>
-          <p>Gender: {cardData.gender}</p>
-          <p>Species: {cardData.species}</p>
-          <p>Status: {cardData.status}</p>
-          {cardData.origin?.name && <p>Origin: {cardData.origin?.name} </p>}
-          {cardData.location?.name && <p>Location: {cardData.location?.name} </p>}
+          <img src={theCard().image} alt="photo" className="card-full-photo" />
+          <p>Name: {theCard().name}</p>
+          <p>Created: {theCard().created}</p>
+          <p>Gender: {theCard().gender}</p>
+          <p>Species: {theCard().species}</p>
+          <p>Status: {theCard().status}</p>
+          {theCard().origin?.name && <p>Origin: {theCard().origin?.name} </p>}
+          {theCard().location?.name && <p>Location: {theCard().location?.name} </p>}
         </>
       ) : (
         <Loader />
