@@ -17,7 +17,7 @@ export function DateInput(props: FormProps) {
           },
         })}
         type="date"
-        defaultValue={props.testMode ? '2023-04-20' : ''}
+        value={props.testMode ? '2023-04-20' : ''}
       />
       {props.errors.DateInput && <p className="error-msg">{props.errors.DateInput.message}</p>}
     </label>

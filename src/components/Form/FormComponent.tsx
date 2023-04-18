@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { setForm } from '../../redux/formReducer';
@@ -18,6 +18,12 @@ export const FormComponent = (props: {
   const formData = useSelector((state: State) => state.form);
   const dispatch = useDispatch();
   const [length, setLength] = useState(0);
+  const [testMode, setTestMode] = useState(false);
+
+  useEffect(() => {
+    setTestMode(testMode);
+  }, [testMode]);
+
   const {
     register,
     handleSubmit,
@@ -46,9 +52,17 @@ export const FormComponent = (props: {
     reset();
   });
 
-  const testMode = false;
   return (
     <form className={'form'} onSubmit={onSubmit}>
+      <input
+        type="checkbox"
+        className="testMode"
+        checked={testMode}
+        onChange={(e) => {
+          const target = e.target as HTMLInputElement;
+          setTestMode(target.checked);
+        }}
+      />
       <NameInput register={register} errors={errors} testMode={testMode} />
       <SpeciesInput register={register} errors={errors} testMode={testMode} />
       <GenderInput register={register} errors={errors} testMode={testMode} />

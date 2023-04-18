@@ -22,7 +22,7 @@ export function NameInput(props: FormProps) {
         })}
         autoComplete="off"
         placeholder="Character's name"
-        defaultValue={props.testMode ? 'Test' : ''}
+        value={props.testMode ? 'Test' : ''}
       />
       {props.errors.NameInput && <p className="error-msg">{props.errors.NameInput.message}</p>}
     </label>

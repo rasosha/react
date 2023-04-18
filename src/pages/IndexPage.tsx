@@ -18,7 +18,6 @@ export default function IndexPage() {
     const newQuery = `page=${page}&name=${inputValue}`;
     dispatch(setQuery({ payload: newQuery }));
     dispatch(setResults({ data, isError, isFetching }));
-    console.log(data, isError, isFetching);
   }, [data, dispatch, inputValue, isError, isFetching, page, query]);
 
   return (

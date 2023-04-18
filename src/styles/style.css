@@ -247,6 +247,7 @@ main > ::-webkit-scrollbar-thumb {
 }
 
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -290,7 +291,7 @@ main > ::-webkit-scrollbar-thumb {
   width: 100%;
   height: 100%;
   background-color: #555555ef;
-  z-index: 1000;
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -371,4 +372,10 @@ main > ::-webkit-scrollbar-thumb {
 .pager > button:disabled {
   cursor: pointer;
   opacity: 0;
+}
+
+.testMode{
+  position: absolute;
+  right: 0;
+  top: 0;
 }

@@ -16,7 +16,7 @@ export function Card(props: { cards: ICard }) {
             dispatch(setModalCard(id));
           }}
         >
-          <div className="char-img" style={{ backgroundImage: `url(${image})` }}></div>
+          <img src={image} alt="" className="char-img" />
           <p className="char-name">{name}</p>
         </div>
       </div>

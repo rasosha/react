@@ -16,7 +16,6 @@ export function SearchBar() {
         onSubmit={(event) => {
           event.preventDefault();
           dispatch(searchInput({ type: 'SET_VALUE', payload: input }));
-          console.log('input:', input);
         }}
         onReset={(event) => {
           event.preventDefault();
