@@ -296,6 +296,7 @@ main > ::-webkit-scrollbar-thumb {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(5px);
 }
 
 .card-div{
