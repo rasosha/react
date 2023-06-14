@@ -1,0 +1,382 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace;
+}
+
+#root {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 50px calc(100vh - 100px) 50px;
+}
+
+.header,
+.footer,
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.header {
+  justify-content: space-between;
+  background-color: #cfdbdb;
+}
+
+.footer {
+  background-color: #cfdbdb;
+}
+
+.footer > * {
+  margin: 10px;
+}
+
+.header,
+.footer {
+  z-index: 10;
+  box-shadow: 0 0 10px black;
+}
+.header .links {
+  display: flex;
+  list-style: none;
+}
+
+.header .link {
+  text-decoration: none;
+  color: rgb(0, 0, 0, 0.8);
+  margin: 10px;
+  padding: 5px;
+}
+
+.link.active {
+  font-weight: 600;
+  background-color: #ffffff80;
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px #ffffff80;
+}
+
+svg:hover {
+  transform: scale(105%);
+  transition: all 0.5s ease;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 5px gray);
+}
+
+.main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: #efefef;
+}
+
+.about {
+  justify-content: center;
+}
+
+.loader, .card-error{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader{
+  z-index: 10000;
+}
+
+.cards {
+  overflow: auto;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding-top: 5px;
+}
+
+.card {
+  position: relative;
+  min-height: 200px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.card:hover {
+  background-color: #cfdbdb;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.card:hover .char-img,
+.card:hover .char-name {
+  transform: scale(105%);
+  transition: all 0.5s ease;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 5px gray);
+}
+
+.char-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px 10px 0 0;
+  background-size: cover;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  transition: all 0.5s ease;
+}
+
+.char-name {
+  background-color: #e6e0ce;
+  font-weight: bold;
+  /* font-size: 20px; */
+  text-align: center;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  transition: all 0.5s ease;
+}
+
+.char-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 14px;
+  transition: all 0.5s ease-in-out;
+  padding: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-label {
+  list-style-type: circle;
+  list-style-position: outside;
+  font-style: italic;
+  margin: 5px 5px 5px 25px;
+}
+
+.info-text {
+  font-style: normal;
+}
+
+.searchbar-div {
+  z-index: 5;
+  min-height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px 5px #efefef;
+}
+
+.searchbar-form{
+  display: flex;
+  justify-content: center;
+}
+
+.searchbar-input,
+.searchbar-btn,
+.searchbar-clear,
+.card {
+  box-shadow: 0 5px 5px #cfdbdb;
+}
+.searchbar-input {
+  box-sizing: border-box;
+  position: relative;
+  height: 50px;
+  outline: none;
+  border: 2px solid #cfdbdb;
+  border-radius: 25px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  font-size: 25px;
+  padding: 0 100px 0 20px;
+}
+
+.searchbar-btn,
+.searchbar-clear {
+  height: 50px;
+  width: 50px;
+  border: 2px solid #cfdbdb;
+  background-color: transparent;
+  border-left: 0;
+  font-size: 20px;
+}
+
+.searchbar-btn{
+  border-radius: 25px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.searchbar-clear:hover,
+.searchbar-btn:hover {
+  cursor: pointer;
+  background-color: rgb(201, 201, 201);
+}
+
+main > ::-webkit-scrollbar {
+  width: 20px;
+  height: 50%;
+}
+
+::-webkit-scrollbar-button {
+  background-color: transparent;
+}
+
+main > ::-webkit-scrollbar-track {
+  background: #e6e0ce;
+  border-radius: 50px;
+}
+
+main > ::-webkit-scrollbar-thumb {
+  background-color: #cfdbdb;
+  border-radius: 50px;
+  border: 3px solid #cfdbdb;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-self: center;
+}
+
+
+.modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% - 100px);
+  background-color: #383838f1;
+  color: white;
+}
+
+.mainForm {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+}
+
+.error-msg {
+  color: red;
+  font-size: small;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.card-modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #555555ef;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.card-div{
+  position: relative;
+  width: 500px;
+  height: 500px;
+  background-color: #cfdbdb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  filter: drop-shadow(0 0 10px black);
+}
+
+.card-full{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-full-photo {
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px black);
+  margin-bottom: 20px;
+  width: 250px;
+  height: 250px;
+}
+
+.close-btn {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(255, 174, 187);
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  content: "X";
+  border-radius: 50%;
+  transition: all .25s ease;
+}
+.close-btn:hover {
+  color: white;
+  background-color: rgb(150, 49, 66);
+  transform: rotate(180deg);
+  transition: all .25s ease;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  color: #55555560;
+}
+.pager > p {
+  color: black;
+}
+
+.pager > button{
+  margin: 10px;
+  width: 50px;
+  height: 25px;
+}
+
+.pager > button:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pager > button:active {
+  cursor: pointer;
+  background-color: #555;
+  color: white;
+}
+
+.pager > button:disabled {
+  cursor: pointer;
+  opacity: 0;
+}
+
+.testMode{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
